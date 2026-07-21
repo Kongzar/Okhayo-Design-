@@ -178,6 +178,7 @@ nav.dark .n-right a{color:var(--mist)}
 
 /* ── NEWSLETTER ── */
 .s-nl{background:var(--bark);padding:96px 80px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;overflow:hidden}
+.nl-eye{font-size:10px;letter-spacing:.2em;color:#F2882F;text-transform:uppercase;margin-bottom:9px}
 .nl-bg{position:absolute;inset:0;opacity:.05;pointer-events:none}
 .nl-title{font-family:var(--fd);font-size:clamp(34px,3.8vw,50px);font-weight:300;color:var(--sand);line-height:1.1;position:relative;z-index:1}
 .nl-title em{color:var(--clay);font-style:italic}
