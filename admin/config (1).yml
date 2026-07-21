@@ -1,0 +1,72 @@
+# ─────────────────────────────────────────────
+# OKHAYO DESIGN — DECAP CMS CONFIGURATION
+# ─────────────────────────────────────────────
+# IMPORTANT: Replace YOUR-GITHUB-USERNAME below
+# with your actual GitHub username (Kongzar)
+# ─────────────────────────────────────────────
+
+backend:
+  name: github
+  repo: Kongzar/Okhayo-Design-
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+
+  - name: "journal"
+    label: "Journal Articles"
+    label_singular: "Journal Article"
+    folder: "_posts/journal"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - Architecture
+          - Objects & Furniture
+          - Weaving & Textiles
+          - Dance & Rhythm
+          - Medicine & Plants
+          - Food & Fire
+          - Beadwork
+          - Philosophy & Ubuntu
+          - Origins & Community
+      - { label: "Featured Image", name: "image", widget: "image", required: false }
+      - { label: "Excerpt", name: "excerpt", widget: "text" }
+      - { label: "Article Body", name: "body", widget: "markdown" }
+      - { label: "Author", name: "author", widget: "string", default: "Okhayo Design" }
+      - { label: "Featured?", name: "featured", widget: "boolean", default: false }
+
+  - name: "objects"
+    label: "Archive Objects"
+    label_singular: "Archive Object"
+    folder: "_posts/objects"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Object Name", name: "name", widget: "string" }
+      - { label: "Local Name", name: "local_name", widget: "string", required: false }
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - Furniture
+          - Ceramics
+          - Weaving
+          - Beadwork
+          - Architecture
+          - Textile
+          - Ceremonial
+          - Botanical
+          - Musical
+      - { label: "Community / People", name: "community", widget: "string" }
+      - { label: "Region / Origin", name: "region", widget: "string" }
+      - { label: "Materials", name: "materials", widget: "string" }
+      - { label: "Object Image", name: "image", widget: "image", required: false }
+      - { label: "Description", name: "body", widget: "markdown" }
