@@ -1,10 +1,3 @@
-# ─────────────────────────────────────────────
-# OKHAYO DESIGN — DECAP CMS CONFIGURATION
-# ─────────────────────────────────────────────
-# IMPORTANT: Replace YOUR-GITHUB-USERNAME below
-# with your actual GitHub username (Kongzar)
-# ─────────────────────────────────────────────
-
 backend:
   name: github
   repo: Kongzar/Okhayo-Design-
@@ -30,14 +23,14 @@ collections:
         widget: "select"
         options:
           - Architecture
-          - Objects & Furniture
-          - Weaving & Textiles
-          - Dance & Rhythm
-          - Medicine & Plants
-          - Food & Fire
+          - "Objects & Furniture"
+          - "Weaving & Textiles"
+          - "Dance & Rhythm"
+          - "Medicine & Plants"
+          - "Food & Fire"
           - Beadwork
-          - Philosophy & Ubuntu
-          - Origins & Community
+          - "Philosophy & Ubuntu"
+          - "Origins & Community"
       - { label: "Featured Image", name: "image", widget: "image", required: false }
       - { label: "Excerpt", name: "excerpt", widget: "text" }
       - { label: "Article Body", name: "body", widget: "markdown" }
@@ -71,6 +64,3 @@ collections:
       - { label: "Materials", name: "materials", widget: "string" }
       - { label: "Object Image", name: "image", widget: "image", required: false }
       - { label: "Description", name: "body", widget: "markdown" }
-      
-base_url: https://api.netlify.com
-  auth_endpoint: auth   
