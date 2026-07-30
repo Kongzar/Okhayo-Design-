@@ -9,12 +9,13 @@ backend:
   name: github
   repo: Kongzar/Okhayo-Design-
   branch: main
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
 collections:
-
   - name: "journal"
     label: "Journal Articles"
     label_singular: "Journal Article"
@@ -70,3 +71,6 @@ collections:
       - { label: "Materials", name: "materials", widget: "string" }
       - { label: "Object Image", name: "image", widget: "image", required: false }
       - { label: "Description", name: "body", widget: "markdown" }
+
+      base_url: https://api.netlify.com
+  auth_endpoint: auth
