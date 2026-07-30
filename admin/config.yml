@@ -71,6 +71,6 @@ collections:
       - { label: "Materials", name: "materials", widget: "string" }
       - { label: "Object Image", name: "image", widget: "image", required: false }
       - { label: "Description", name: "body", widget: "markdown" }
-
-      base_url: https://api.netlify.com
-  auth_endpoint: auth
+      
+base_url: https://api.netlify.com
+  auth_endpoint: auth   
