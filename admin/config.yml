@@ -2,7 +2,7 @@ backend:
   name: github
   repo: Kongzar/Okhayo-Design-
   branch: main
-  auth_endpoint: https://sveltia-cms-auth.pages.dev
+  auth_endpoint: https://sveltia-cms-auth.pages.dev/auth
   client_id: Ov23ctF0ZY4n80CNr3S6
 
 media_folder: "images/uploads"
