@@ -1,7 +1,7 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: Kongzar/Okhayo-Design-
   branch: main
-  site_domain: ubiquitous-toffee-fb1798.netlify.app
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
