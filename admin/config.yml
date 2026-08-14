@@ -2,8 +2,8 @@ backend:
   name: github
   repo: Kongzar/Okhayo-Design-
   branch: main
-  auth_endpoint: https://sveltia-cms-auth.pages.dev/auth
-  client_id: Ov23ctF0ZY4n80CNr3S6
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
