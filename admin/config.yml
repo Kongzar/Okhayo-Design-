@@ -1,6 +1,5 @@
 backend:
-  name: tina-cloud
-  client_id: 0536c35c-fe26-43e0-b8f3-fe0fcbe89648
+  name: git-gateway
   branch: main
 
 media_folder: "images/uploads"
