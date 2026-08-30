@@ -1,8 +1,7 @@
 backend:
-  name: git-gateway
+  name: tina-cloud
+  client_id: 0536c35c-fe26-43e0-b8f3-fe0fcbe89648
   branch: main
-  site_url: https://ubiquitous-toffee-fb1798.netlify.app
-  display_url: https://ubiquitous-toffee-fb1798.netlify.app
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
