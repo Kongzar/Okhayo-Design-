@@ -1,4 +1,6 @@
 flask
 gunicorn==26.2.0
 flask-session
+cs50
+werkzeug
 
