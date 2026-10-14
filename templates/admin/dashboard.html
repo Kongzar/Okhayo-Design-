@@ -1,0 +1,109 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<section style="margin-top:60px;padding:80px;background:var(--warm);min-height:100vh">
+
+  <!-- Header -->
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:60px">
+    <div>
+      <p class="s-label">Admin Panel</p>
+      <h1 style="font-family:var(--fd);font-size:48px;font-weight:300;color:var(--soil);margin-top:10px">
+        Journal <em style="color:var(--terra)">Dashboard</em>
+      </h1>
+    </div>
+    <a href="/admin/new" class="btn-p">+ New Article</a>
+  </div>
+
+  <!-- Flash messages -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="flash flash-{{ category }}" style="margin-bottom:24px">
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  <!-- Articles table -->
+  {% if articles %}
+    <div style="background:var(--warm);border:1px solid var(--mist)">
+
+      <!-- Table header -->
+      <div style="display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:20px;padding:16px 24px;background:var(--linen);border-bottom:1px solid var(--mist)">
+        <p style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ash)">Title</p>
+        <p style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ash)">Category</p>
+        <p style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ash)">Status</p>
+        <p style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ash)">Actions</p>
+      </div>
+
+      <!-- Table rows -->
+      {% for article in articles %}
+        <div style="display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:20px;padding:20px 24px;border-bottom:1px solid var(--mist);align-items:center">
+
+          <!-- Title -->
+          <div>
+            <p style="font-family:var(--fd);font-size:18px;font-weight:300;color:var(--soil)">
+              {{ article.title }}
+            </p>
+            <p style="font-size:11px;color:var(--ash);margin-top:4px">
+              {{ article.created_at[:10] }}
+            </p>
+          </div>
+
+          <!-- Category -->
+          <p style="font-size:12px;color:var(--ash)">{{ article.category }}</p>
+
+          <!-- Status -->
+          {% if article.published %}
+            <span style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#4a8a4a;background:#e8f0e8;padding:4px 12px">
+              Published
+            </span>
+          {% else %}
+            <span style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ash);background:var(--linen);padding:4px 12px">
+              Draft
+            </span>
+          {% endif %}
+
+          <!-- Actions -->
+          <div style="display:flex;gap:12px;align-items:center">
+            <a href="/admin/edit/{{ article.id }}"
+               style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--terra);text-decoration:none">
+              Edit
+            </a>
+            <form method="POST" action="/admin/delete/{{ article.id }}"
+                  onsubmit="return confirm('Delete this article?')">
+              <button type="submit"
+                      style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#cc2200;background:none;border:none;cursor:pointer;font-family:var(--fb)">
+                Delete
+              </button>
+            </form>
+            {% if article.published %}
+              <a href="/journal/{{ article.id }}"
+                 target="_blank"
+                 style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ash);text-decoration:none">
+                View ↗
+              </a>
+            {% endif %}
+          </div>
+
+        </div>
+      {% endfor %}
+
+    </div>
+
+  {% else %}
+    <div style="text-align:center;padding:100px 0">
+      <p style="font-family:var(--fd);font-size:28px;font-weight:300;color:var(--ash);font-style:italic">
+        No articles yet.
+      </p>
+      <a href="/admin/new" class="btn-p" style="display:inline-block;margin-top:32px">
+        Write your first article
+      </a>
+    </div>
+  {% endif %}
+
+</section>
+
+{% endblock %}

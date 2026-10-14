@@ -1,0 +1,156 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<section style="margin-top:60px;padding:80px;background:var(--warm);min-height:100vh">
+
+  <!-- Header -->
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:60px">
+    <div>
+      <p class="s-label">Admin Panel</p>
+      <h1 style="font-family:var(--fd);font-size:48px;font-weight:300;color:var(--soil);margin-top:10px">
+        {% if article %}
+          Edit <em style="color:var(--terra)">Article</em>
+        {% else %}
+          New <em style="color:var(--terra)">Article</em>
+        {% endif %}
+      </h1>
+    </div>
+    <a href="/admin" class="btn-dk">← Back to Dashboard</a>
+  </div>
+
+  <!-- Flash messages -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="flash flash-{{ category }}" style="margin-bottom:24px">
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  <!-- Editor form -->
+  <form method="POST" style="max-width:860px">
+
+    <!-- Title -->
+    <div style="margin-bottom:36px">
+      <label style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);display:block;margin-bottom:12px">
+        Title *
+      </label>
+      <input
+        type="text"
+        name="title"
+        value="{{ article.title if article else '' }}"
+        placeholder="Article title"
+        required
+        style="width:100%;background:transparent;border:none;border-bottom:1px solid var(--mist);padding:14px 0;font-family:var(--fd);font-size:28px;font-weight:300;color:var(--soil);outline:none"
+      >
+    </div>
+
+    <!-- Category -->
+    <div style="margin-bottom:36px">
+      <label style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);display:block;margin-bottom:12px">
+        Category *
+      </label>
+      <select
+        name="category"
+        style="background:var(--linen);border:1px solid var(--mist);padding:12px 16px;font-family:var(--fb);font-size:14px;color:var(--soil);outline:none;width:300px"
+      >
+        {% set cats = ['Architecture', 'Objects & Furniture', 'Weaving & Textiles',
+                       'Dance & Rhythm', 'Medicine & Plants', 'Food & Fire',
+                       'Beadwork', 'Philosophy & Ubuntu', 'Origins & Community'] %}
+        {% for cat in cats %}
+          <option value="{{ cat }}"
+            {% if article and article.category == cat %}selected{% endif %}>
+            {{ cat }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <!-- Image URL -->
+    <div style="margin-bottom:36px">
+      <label style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);display:block;margin-bottom:12px">
+        Featured Image URL
+      </label>
+      <input
+        type="text"
+        name="image_url"
+        value="{{ article.image_url if article else '' }}"
+        placeholder="https://example.com/image.jpg"
+        style="width:100%;background:transparent;border:none;border-bottom:1px solid var(--mist);padding:14px 0;font-family:var(--fb);font-size:14px;color:var(--soil);outline:none"
+      >
+    </div>
+
+    <!-- Excerpt -->
+    <div style="margin-bottom:36px">
+      <label style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);display:block;margin-bottom:12px">
+        Excerpt
+      </label>
+      <textarea
+        name="excerpt"
+        placeholder="2-3 sentences summarising the article..."
+        rows="3"
+        style="width:100%;background:transparent;border:1px solid var(--mist);padding:16px;font-family:var(--fb);font-size:14px;color:var(--soil);outline:none;resize:vertical;line-height:1.7"
+      >{{ article.excerpt if article else '' }}</textarea>
+    </div>
+
+    <!-- Body -->
+    <div style="margin-bottom:36px">
+      <label style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);display:block;margin-bottom:12px">
+        Article Body * (HTML supported)
+      </label>
+      <textarea
+        name="body"
+        placeholder="Write your article here... You can use HTML tags like &lt;h2&gt;, &lt;p&gt;, &lt;strong&gt;, &lt;em&gt;"
+        rows="24"
+        required
+        style="width:100%;background:var(--linen);border:1px solid var(--mist);padding:24px;font-family:var(--fb);font-size:14px;color:var(--soil);outline:none;resize:vertical;line-height:1.9"
+      >{{ article.body if article else '' }}</textarea>
+      <p style="font-size:12px;color:var(--ash);margin-top:8px">
+        Tip: Use &lt;h2&gt; for section headings, &lt;p&gt; for paragraphs, &lt;strong&gt; for bold, &lt;em&gt; for italic.
+      </p>
+    </div>
+
+    <!-- Author -->
+    <div style="margin-bottom:36px">
+      <label style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);display:block;margin-bottom:12px">
+        Author
+      </label>
+      <input
+        type="text"
+        name="author"
+        value="{{ article.author if article else 'Okhayo Design' }}"
+        style="width:100%;background:transparent;border:none;border-bottom:1px solid var(--mist);padding:14px 0;font-family:var(--fb);font-size:14px;color:var(--soil);outline:none"
+      >
+    </div>
+
+    <!-- Published toggle -->
+    <div style="margin-bottom:56px;display:flex;align-items:center;gap:16px">
+      <input
+        type="checkbox"
+        name="published"
+        id="published"
+        {% if article and article.published %}checked{% endif %}
+        style="width:18px;height:18px;cursor:pointer"
+      >
+      <label for="published"
+             style="font-size:14px;color:var(--soil);cursor:pointer">
+        Publish this article (visible to all visitors)
+      </label>
+    </div>
+
+    <!-- Submit -->
+    <div style="display:flex;gap:16px">
+      <button type="submit" class="btn-p">
+        {% if article %}Save Changes{% else %}Publish Article{% endif %}
+      </button>
+      <a href="/admin" class="btn-dk">Cancel</a>
+    </div>
+
+  </form>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<section style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--soil);padding:80px 24px;margin-top:60px">
+  <div style="width:100%;max-width:440px">
+
+    <h1 style="font-family:var(--fd);font-size:48px;font-weight:300;color:var(--sand);margin-bottom:8px">
+      Join<br><em style="color:var(--clay)">Okhayo.</em>
+    </h1>
+    <p style="font-size:14px;color:var(--ash);margin-bottom:48px">
+      Create an account to save favourites and be part of the community.
+    </p>
+
+    {% if error %}
+      <p style="color:#cc2200;font-size:13px;margin-bottom:20px">{{ error }}</p>
+    {% endif %}
+
+    <form method="POST" action="/register">
+      <input
+        type="text"
+        name="username"
+        placeholder="Your name"
+        required
+        style="width:100%;background:transparent;border:none;border-bottom:1px solid rgba(232,213,176,.3);padding:16px 0;font-family:var(--fb);font-size:14px;color:var(--sand);outline:none;margin-bottom:20px;display:block"
+      >
+      <input
+        type="email"
+        name="email"
+        placeholder="Email address"
+        required
+        style="width:100%;background:transparent;border:none;border-bottom:1px solid rgba(232,213,176,.3);padding:16px 0;font-family:var(--fb);font-size:14px;color:var(--sand);outline:none;margin-bottom:20px;display:block"
+      >
+      <input
+        type="password"
+        name="password"
+        placeholder="Choose a password"
+        required
+        style="width:100%;background:transparent;border:none;border-bottom:1px solid rgba(232,213,176,.3);padding:16px 0;font-family:var(--fb);font-size:14px;color:var(--sand);outline:none;margin-bottom:36px;display:block"
+      >
+      <button type="submit" class="btn-p">Create Account</button>
+    </form>
+
+    <p style="font-size:13px;color:var(--ash);margin-top:24px">
+      Already have an account?
+      <a href="/login" style="color:var(--clay);text-decoration:none">Log in</a>
+    </p>
+
+  </div>
+</section>
+{% endblock %}

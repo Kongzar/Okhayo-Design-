@@ -1,25 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Okhayo Design</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XV9VKNQT4K"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-XV9VKNQT4K');
-</script>
-</head>
-<body>
+{% extends "layout.html" %}
 
-<!-- ═══════════════════════════════════
-     VIDEO OVERLAY
-═══════════════════════════════════ -->
+{% block content %}
+
+<!-- VIDEO OVERLAY — paste your full video overlay HTML here -->
 <div class="v-overlay" id="vOverlay">
   <div class="v-bar" id="vBar"></div>
 
@@ -120,38 +103,9 @@
   <button class="v-skip" id="vSkip">Enter the world of Okhayo</button>
 </div>
 
-<!-- ═══════════════════════════════════
-     NAV
-═══════════════════════════════════ -->
-<nav id="mainNav">
-  <a href="#" class="n-logo">
-    <svg class="n-mark" viewBox="0 0 26 26" xmlns="http://www.w3.org/2000/svg">
-      <rect x="0" y="0" width="26" height="7" fill="#cc2200" opacity=".8"/>
-      <rect x="0" y="8" width="26" height="5" fill="#c8960c" opacity=".8"/>
-      <rect x="0" y="14" width="26" height="5" fill="#003366" opacity=".7"/>
-      <rect x="4" y="1" width="5" height="5" fill="#231209"/>
-      <rect x="12" y="1" width="5" height="5" fill="#231209"/>
-      <rect x="20" y="1" width="5" height="5" fill="#231209"/>
-    </svg>
-    O'Khayo
-  </a>
-  <ul class="n-links">
-    <li><a href="#cats">Journal</a></li>
-    <li><a href="#objects">Spaces</a></li>
-    <li><a href="#ubuntu">Makers</a></li>
-    <li><a href="#origins">Philsophy</a></li>
-    <li><a href="#journal">Hospitality</a></li>
-    <li><a href="#journal">Community</a></li>
-  </ul>
-  <div class="n-right">
-    <a href="#">Work With Us</a>
-  </div>
-</nav>
 
-<!-- ═══════════════════════════════════
-     HERO
-═══════════════════════════════════ -->
-<section class="hero">
+<!-- HERO — paste your full hero HTML here -->
+ <section class="hero">
   <div class="h-left">
     <!-- Ndebele bg pattern -->
     <svg class="h-ndebele-bg" viewBox="0 0 700 900" xmlns="http://www.w3.org/2000/svg">
@@ -257,7 +211,8 @@
   </div>
 </section>
 
-<!-- MARQUEE -->
+
+<!-- MARQUEE — paste your marquee HTML here -->
 <div class="mq">
   <div class="mq-i">
     <span>O'Khayo Design</span><span class="dot">·</span><span>Volume 1 - 2026</span><span class="dot">·</span><span>Subscribe To The Annual Journal</span><span class="dot">·</span><span>4 Projects</span><span class="dot">·</span><span>24 arguments</span><span class="dot">·</span><span>1 annual editions</span><span class="dot">·</span><span>Zulu Beadwork</span><span class="dot">·</span><span>Sotho Blanket</span><span class="dot">·</span><span>Ubuntu is the Root</span><span class="dot">·</span>
@@ -267,10 +222,8 @@
 
 <div class="ndiv"></div>
 
-<!-- ═══════════════════════════════════
-     INTRO
-═══════════════════════════════════ -->
-<section class="s-intro reveal" id="intro">
+<!-- All other sections from your existing index.html go here -->
+ <section class="s-intro reveal" id="intro">
   <div>
     <p class="s-label">What is Okhayo</p>
     <h2 class="s-title">A home for<br>living <em>heritage.</em></h2>
@@ -575,6 +528,23 @@
         <p class="oc-cat">Opening Argument</p>
         <h3 class="oc-name">Coastal Living, Encoded Itelligence - How the Rondavel Knows</h3>
         <p class="oc-orig">Coastal living on the Eastern Cape gave Xhosa communities access to two spiritual territories simultaneously. The rondavel is what that intelligence builds.</p>
+
+         {% if session.user_id %}
+      <form method="POST" action="/favourite/1" style="margin-top:12px">
+        <button type="submit"
+                style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);background:none;border:1px solid var(--clay);padding:8px 16px;cursor:pointer;font-family:var(--fb)">
+          Save to Favourites
+        </button>
+      </form>
+    {% else %}
+      <a href="/login"
+         style="display:inline-block;margin-top:12px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ash);text-decoration:none">
+        Log in to save
+      </a>
+    {% endif %}
+
+  </div>
+</div>
       </div>
     </div>
     <!-- 2 Grass Mat -->
@@ -601,8 +571,26 @@
         <p class="oc-cat">Art Reading</p>
         <h3 class="oc-name">The Body Knows the Way — Movement Between Sea and Mountain</h3>
         <p class="oc-orig">The body that has walked from the Indian Ocean shoreline to the Amathole foothills develops a spatial intelligence different from any other.</p>
+
+         {% if session.user_id %}
+      <form method="POST" action="/favourite/2" style="margin-top:12px">
+        <button type="submit"
+                style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);background:none;border:1px solid var(--clay);padding:8px 16px;cursor:pointer;font-family:var(--fb)">
+          Save to Favourites
+        </button>
+      </form>
+    {% else %}
+      <a href="/login"
+         style="display:inline-block;margin-top:12px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ash);text-decoration:none">
+        Log in to save
+      </a>
+    {% endif %}
+
+  </div>
+</div>
       </div>
     </div>
+
     <!-- 3 Beadwork -->
     <div class="oc reveal">
       <div class="oc-img ob3">
@@ -623,29 +611,53 @@
         <p class="oc-cat">Desgn Propositions</p>
         <h3 class="oc-name">What the Rondavel Knows — A Brief for Coastal Architecture</h3>
         <p class="oc-orig">Not a nostalgic argument for the rondavel's revival. A precise design brief for what coastal architecture looks like when it takes Xhosa spatial intelligence seriously</p>
+
+         {% if session.user_id %}
+      <form method="POST" action="/favourite/3" style="margin-top:12px">
+        <button type="submit"
+                style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);background:none;border:1px solid var(--clay);padding:8px 16px;cursor:pointer;font-family:var(--fb)">
+          Save to Favourites
+        </button>
+      </form>
+    {% else %}
+      <a href="/login"
+         style="display:inline-block;margin-top:12px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ash);text-decoration:none">
+        Log in to save
+      </a>
+    {% endif %}
+
+  </div>
+</div>
+
+        
       </div>
     </div>
     <!-- 4 Clay Pot -->
     <div class="oc reveal">
-      <div class="oc-img ob4">
-        <svg viewBox="0 0 180 240" width="100" xmlns="http://www.w3.org/2000/svg">
-          <ellipse cx="90" cy="224" rx="56" ry="11" fill="#a0522d" opacity=".18"/>
-          <path d="M40 178 Q33 148 38 118 Q44 82 63 65 Q76 50 90 48 Q104 50 117 65 Q136 82 142 118 Q147 148 140 178Z" fill="#8c5030" opacity=".82"/>
-          <path d="M48 178 Q41 150 46 121 Q52 86 69 70 Q80 56 90 54 Q100 56 111 70 Q128 86 134 121 Q139 150 132 178Z" fill="#c17b3f" opacity=".28"/>
-          <rect x="72" y="34" width="36" height="18" rx="3" fill="#6b3c20" opacity=".8"/>
-          <ellipse cx="90" cy="32" rx="22" ry="7" fill="#5c3420" opacity=".88"/>
-          <rect x="40" y="120" width="100" height="6" fill="#cc2200" opacity=".5"/>
-          <rect x="40" y="130" width="100" height="5" fill="#c8960c" opacity=".5"/>
-          <rect x="40" y="140" width="100" height="6" fill="#003366" opacity=".42"/>
-          <path d="M48 97 L58 87 L68 97 L78 87 L88 97 L98 87 L108 97 L118 87 L128 97" stroke="#cc2200" stroke-width="1.4" fill="none" opacity=".48"/>
-        </svg>
-      </div>
-      <div class="oc-info">
-        <p class="oc-cat">Ceramics</p>
-        <h3 class="oc-name">Beer Vessel<br>(Ukhamba)</h3>
-        <p class="oc-orig">Zulu · Coilbuilt clay · Natural graphite</p>
-      </div>
-    </div>
+  <div class="oc-img ob4">
+    <!-- svg here -->
+  </div>
+  <div class="oc-info">
+    <p class="oc-cat">Ceramics</p>
+    <h3 class="oc-name">Beer Vessel<br>(Ukhamba)</h3>
+    <p class="oc-orig">Zulu · Coilbuilt clay · Natural graphite</p>
+
+    {% if session.user_id %}
+      <form method="POST" action="/favourite/4" style="margin-top:12px">
+        <button type="submit"
+                style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);background:none;border:1px solid var(--clay);padding:8px 16px;cursor:pointer;font-family:var(--fb)">
+          Save to Favourites
+        </button>
+      </form>
+    {% else %}
+      <a href="/login"
+         style="display:inline-block;margin-top:12px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ash);text-decoration:none">
+        Log in to save
+      </a>
+    {% endif %}
+
+  </div>
+</div>
   </div>
 </section>
 
@@ -1165,3 +1177,6 @@ Before a single dome-shaped home was raised, before a hearth was ever dug into t
 <script src="script.js"></script>
 </body>
 </html>
+
+
+{% endblock %}

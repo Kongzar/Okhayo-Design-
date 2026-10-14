@@ -224,3 +224,40 @@ footer{background:var(--soil);padding:76px 80px 0;display:grid;grid-template-col
   footer { grid-template-columns: 1fr 1fr; }
   .s-intro, .s-obj, .s-ubuntu, .s-disc, .s-orig, .s-ed, .s-nl, .cats-hd, .obj-hd, .disc-hd, .ed-hd { padding-left: 24px !important; padding-right: 24px !important; }
 }
+
+/* Flash messages */
+.flash {
+  padding: 14px 48px;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-align: center;
+}
+.flash-success { background: #2a4a2a; color: #90c090; }
+.flash-error { background: #4a1a1a; color: #c09090; }
+
+
+/* Article body styles */
+.article-body h1, .article-body h2, .article-body h3 {
+  font-family: var(--fd);
+  font-weight: 300;
+  color: var(--soil);
+  margin: 48px 0 20px;
+  line-height: 1.1;
+}
+.article-body h2 { font-size: 36px; }
+.article-body h3 { font-size: 26px; }
+.article-body p { margin-bottom: 24px; }
+.article-body img {
+  width: 100%;
+  margin: 40px 0;
+}
+.article-body blockquote {
+  font-family: var(--fd);
+  font-size: 22px;
+  font-style: italic;
+  color: var(--terra);
+  border-left: 2px solid var(--clay);
+  padding-left: 24px;
+  margin: 40px 0;
+  line-height: 1.5;
+}
